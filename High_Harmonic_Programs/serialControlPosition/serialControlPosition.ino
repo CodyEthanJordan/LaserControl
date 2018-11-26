@@ -18,7 +18,7 @@ int shutterOpenPosition = 15;
 
 bool gratingArrivedAtTarget = true;
 bool confirmMovement = false;
-bool movementConfirmed = false;
+bool movementConfirmed = true;
 
 int eeAddress = 0;
 
@@ -52,12 +52,13 @@ void loop()
 
   if(!gratingArrivedAtTarget)
   {
-    if (gratingStepper.distanceToGo() == 0)
+    if (gratingStepper.distanceToGo() == 0 && !gratingArrivedAtTarget)
     {
       gratingArrivedAtTarget = true;
-      if(confirmMovement)
+      if(confirmMovement && !movementConfirmed)
       {
         Serial.println(gratingStepper.currentPosition());
+        movementConfirmed = true;
       }
     }
   }
@@ -86,12 +87,12 @@ void serialEvent()
         case 'm': //expect movement command
           index = 0;
           confirmMovement = false;
-          gratingArrivedAtTarget = false;
           break;
         case 'M': //expect movement command with confirmation
           index = 0;
-          gratingArrivedAtTarget = false;
           confirmMovement = true;
+          movementConfirmed = false;
+          break;
         case 'p': //report current position
           Serial.println(gratingStepper.currentPosition());
           break;
@@ -102,21 +103,22 @@ void serialEvent()
               gratingStepper.setMaxSpeed(gratingSpeed);
               gratingStepper.setSpeed(gratingSpeed); 
               index = 0;
+              gratingArrivedAtTarget = false;
               break;
         default: //read in numbers to move motor
           if((index < MaxChars && isDigit(ch)) || (index == 0 && ch == '-')) { 
             strValue[index++] = ch; 
            }
-          else 
-          { 
-              strValue[index] = 0; 
-              newAngle = atol(strValue); 
-              gratingStepper.moveTo(newAngle);
-              gratingArrivedAtTarget = false;
-              gratingStepper.setMaxSpeed(gratingSpeed);
-              gratingStepper.setSpeed(gratingSpeed); 
-              index = 0;
-          }  
+//          else 
+//          { 
+//              strValue[index] = 0; 
+//              newAngle = atol(strValue); 
+//              gratingStepper.moveTo(newAngle);
+//              gratingArrivedAtTarget = false;
+//              gratingStepper.setMaxSpeed(gratingSpeed);
+//              gratingStepper.setSpeed(gratingSpeed); 
+//              index = 0;
+//          }  
       }
 
 //      if (ch == 's') //engage shutter
