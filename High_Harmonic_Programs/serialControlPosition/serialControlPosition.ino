@@ -80,6 +80,7 @@ void serialEvent()
         case 'r': //reset
           index = 0;
           confirmMovement = false;
+          gratingStepper.stop();
           break;
         case 'z': //set current position as 0
           gratingStepper.setCurrentPosition(0);
