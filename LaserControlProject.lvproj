@@ -10,16 +10,14 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
-		<Item Name="DelayStageDlls" Type="Folder" URL="../DelayStageDlls">
-			<Property Name="NI.DISK" Type="Bool">true</Property>
-		</Item>
+		<Item Name="DelayStageDlls" Type="Folder"/>
 		<Item Name="High_Harmonic_Programs" Type="Folder" URL="../High_Harmonic_Programs">
 			<Property Name="NI.DISK" Type="Bool">true</Property>
 		</Item>
 		<Item Name="FindZeroTimeDelay.vi" Type="VI" URL="../FindZeroTimeDelay.vi"/>
 		<Item Name="ManualDelayStage.vi" Type="VI" URL="../ManualDelayStage.vi"/>
 		<Item Name="README.txt" Type="Document" URL="../README.txt"/>
-		<Item Name="ScanHarmonics Nov21-2018.vi" Type="VI" URL="../ScanHarmonics Nov21-2018.vi"/>
+		<Item Name="ScanHarmonics.vi" Type="VI" URL="../ScanHarmonics.vi"/>
 		<Item Name="TimeResolvedSpectroscopy.vi" Type="VI" URL="../TimeResolvedSpectroscopy.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
@@ -102,9 +100,9 @@
 			<Item Name="P7889Dat.vi" Type="VI" URL="/Documents and Settings/admin/My Documents/MIH labVIEW/lv7/p7889.llb/P7889Dat.vi"/>
 			<Item Name="P7889Par.vi" Type="VI" URL="/Documents and Settings/admin/My Documents/MIH labVIEW/lv7/p7889.llb/P7889Par.vi"/>
 			<Item Name="P7889Sts.vi" Type="VI" URL="/Documents and Settings/admin/My Documents/MIH labVIEW/P7889Sts.vi"/>
-			<Item Name="Thorlabs.MotionControl.Benchtop.BrushlessMotorCLI.dll" Type="Document" URL="../../../../Documents/APT Controller/afjal/Thorlabs.MotionControl.Benchtop.BrushlessMotorCLI.dll"/>
-			<Item Name="Thorlabs.MotionControl.Controls.dll" Type="Document" URL="../../../../Documents/APT Controller/afjal/Thorlabs.MotionControl.Controls.dll"/>
-			<Item Name="Thorlabs.MotionControl.GenericMotorCLI.dll" Type="Document" URL="../../../../Documents/APT Controller/afjal/Thorlabs.MotionControl.GenericMotorCLI.dll"/>
+			<Item Name="Thorlabs.MotionControl.Benchtop.BrushlessMotorCLI.dll" Type="Document" URL="../../../../Users/VaidaLabAdmin/Desktop/CodyEthanJordan/LaserControl/DelayStageDlls/Thorlabs.MotionControl.Benchtop.BrushlessMotorCLI.dll"/>
+			<Item Name="Thorlabs.MotionControl.Controls.dll" Type="Document" URL="../../../../Users/VaidaLabAdmin/Desktop/CodyEthanJordan/LaserControl/DelayStageDlls/Thorlabs.MotionControl.Controls.dll"/>
+			<Item Name="Thorlabs.MotionControl.GenericMotorCLI.dll" Type="Document" URL="../../../../Users/VaidaLabAdmin/Desktop/CodyEthanJordan/LaserControl/DelayStageDlls/Thorlabs.MotionControl.GenericMotorCLI.dll"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
