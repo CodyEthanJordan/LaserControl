@@ -18,6 +18,7 @@ int shutterOpenPosition = 15;
 
 bool gratingArrivedAtTarget = true;
 bool confirmMovement = false;
+bool movementConfirmed = true;
 
 int eeAddress = 0;
 
@@ -25,13 +26,11 @@ void setup()
 {  
    Serial.begin(9600);
    gratingStepper = AccelStepper(AccelStepper::DRIVER, 7, 8);
-   //gratingStepper = AccelStepper(AccelStepper::DRIVER, 13, 12);
    gratingStepper.setEnablePin(6);
    gratingStepper.setMaxSpeed(gratingSpeed);
    gratingStepper.setSpeed(gratingSpeed);
 
    shutterStepper = AccelStepper(AccelStepper::DRIVER, 10, 11);
-   //shutterStepper = AccelStepper(AccelStepper::DRIVER, 7, 8);
    shutterStepper.setEnablePin(9);
    shutterStepper.setMaxSpeed(shutterSpeed);
    shutterStepper.setSpeed(shutterSpeed);
@@ -44,30 +43,27 @@ void setup()
   long zeroPosition;
   EEPROM.get(eeAddress, zeroPosition);
   gratingStepper.setCurrentPosition(zeroPosition);
-
-
-  
 }
 
 void loop()
 {  
-    gratingStepper.runSpeedToPosition(); 
-    shutterStepper.runSpeedToPosition();
+  gratingStepper.runSpeedToPosition(); 
+  shutterStepper.runSpeedToPosition();
 
-    if(!gratingArrivedAtTarget)
+  if(!gratingArrivedAtTarget)
+  {
+    if (gratingStepper.distanceToGo() == 0 && !gratingArrivedAtTarget)
     {
-      if (gratingStepper.distanceToGo() == 0)
+      gratingArrivedAtTarget = true;
+      if(confirmMovement && !movementConfirmed)
       {
-        gratingArrivedAtTarget = true;
-        if(confirmMovement)
-        {
-          Serial.println(gratingStepper.currentPosition());
-        }
-        
+        Serial.println(gratingStepper.currentPosition());
+        movementConfirmed = true;
       }
     }
-
-    EEPROM.put(eeAddress, gratingStepper.currentPosition());
+  }
+  //save current position in EEPROM in case device gets turned off
+  EEPROM.put(eeAddress, gratingStepper.currentPosition());
 }
 
 void serialEvent()
@@ -84,6 +80,7 @@ void serialEvent()
         case 'r': //reset
           index = 0;
           confirmMovement = false;
+          gratingStepper.stop();
           break;
         case 'z': //set current position as 0
           gratingStepper.setCurrentPosition(0);
@@ -95,6 +92,8 @@ void serialEvent()
         case 'M': //expect movement command with confirmation
           index = 0;
           confirmMovement = true;
+          movementConfirmed = false;
+          break;
         case 'p': //report current position
           Serial.println(gratingStepper.currentPosition());
           break;
@@ -102,25 +101,25 @@ void serialEvent()
               strValue[index] = 0; 
               newAngle = atol(strValue); 
               gratingStepper.moveTo(newAngle);
-              gratingArrivedAtTarget = false;
               gratingStepper.setMaxSpeed(gratingSpeed);
               gratingStepper.setSpeed(gratingSpeed); 
               index = 0;
+              gratingArrivedAtTarget = false;
               break;
         default: //read in numbers to move motor
           if((index < MaxChars && isDigit(ch)) || (index == 0 && ch == '-')) { 
             strValue[index++] = ch; 
            }
-          else 
-          { 
-              strValue[index] = 0; 
-              newAngle = atol(strValue); 
-              gratingStepper.moveTo(newAngle);
-              gratingArrivedAtTarget = false;
-              gratingStepper.setMaxSpeed(gratingSpeed);
-              gratingStepper.setSpeed(gratingSpeed); 
-              index = 0;
-          }  
+//          else 
+//          { 
+//              strValue[index] = 0; 
+//              newAngle = atol(strValue); 
+//              gratingStepper.moveTo(newAngle);
+//              gratingArrivedAtTarget = false;
+//              gratingStepper.setMaxSpeed(gratingSpeed);
+//              gratingStepper.setSpeed(gratingSpeed); 
+//              index = 0;
+//          }  
       }
 
 //      if (ch == 's') //engage shutter
