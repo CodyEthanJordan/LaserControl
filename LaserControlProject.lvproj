@@ -100,9 +100,9 @@
 			<Item Name="P7889Dat.vi" Type="VI" URL="/Documents and Settings/admin/My Documents/MIH labVIEW/lv7/p7889.llb/P7889Dat.vi"/>
 			<Item Name="P7889Par.vi" Type="VI" URL="/Documents and Settings/admin/My Documents/MIH labVIEW/lv7/p7889.llb/P7889Par.vi"/>
 			<Item Name="P7889Sts.vi" Type="VI" URL="/Documents and Settings/admin/My Documents/MIH labVIEW/P7889Sts.vi"/>
-			<Item Name="Thorlabs.MotionControl.Benchtop.BrushlessMotorCLI.dll" Type="Document" URL="../../../../Users/VaidaLabAdmin/Desktop/CodyEthanJordan/LaserControl/DelayStageDlls/Thorlabs.MotionControl.Benchtop.BrushlessMotorCLI.dll"/>
-			<Item Name="Thorlabs.MotionControl.Controls.dll" Type="Document" URL="../../../../Users/VaidaLabAdmin/Desktop/CodyEthanJordan/LaserControl/DelayStageDlls/Thorlabs.MotionControl.Controls.dll"/>
-			<Item Name="Thorlabs.MotionControl.GenericMotorCLI.dll" Type="Document" URL="../../../../Users/VaidaLabAdmin/Desktop/CodyEthanJordan/LaserControl/DelayStageDlls/Thorlabs.MotionControl.GenericMotorCLI.dll"/>
+			<Item Name="Thorlabs.MotionControl.Benchtop.BrushlessMotorCLI.dll" Type="Document" URL="../DelayStageDlls/Thorlabs.MotionControl.Benchtop.BrushlessMotorCLI.dll"/>
+			<Item Name="Thorlabs.MotionControl.Controls.dll" Type="Document" URL="../DelayStageDlls/Thorlabs.MotionControl.Controls.dll"/>
+			<Item Name="Thorlabs.MotionControl.GenericMotorCLI.dll" Type="Document" URL="../DelayStageDlls/Thorlabs.MotionControl.GenericMotorCLI.dll"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
